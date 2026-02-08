@@ -46,6 +46,7 @@
             background-color: #666;
             display: flex;
             align-items: center;
+            cursor: pointer;
         }
 
         .nav-item.active {
@@ -58,7 +59,7 @@
             width: 1000px;
             margin: 20px auto;
             background-color: white;
-            min-height: 500px;
+            min-height: 600px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
@@ -69,14 +70,6 @@
             border-right: 1px solid #ddd;
             padding: 15px;
             background-color: #fff;
-        }
-
-        .user-name {
-            font-size: 14px;
-            font-weight: bold;
-            border-bottom: 2px solid #999;
-            padding-bottom: 5px;
-            margin-bottom: 10px;
         }
 
         .sidebar-menu {
@@ -94,10 +87,6 @@
             line-height: 1.4;
         }
 
-        .sidebar-menu li:hover {
-            background-color: #f9f9f9;
-        }
-
         .sidebar-menu li::before {
             content: "▪ ";
         }
@@ -108,13 +97,12 @@
             padding: 20px 35px;
         }
 
-        /* 內容區塊隱藏設定 */
         .page-content {
-            display: none; /* 預設先全部隱藏 */
+            display: none;
         }
 
         .page-content.active {
-            display: block; /* 只有 active 的會顯示 */
+            display: block;
         }
 
         .breadcrumb {
@@ -124,21 +112,40 @@
         }
 
         .breadcrumb span {
-            color: #cc0000;
+            color: #666;
         }
 
-        .title-banner {
-            color: #cc0000;
-            font-size: 18px;
-            font-weight: bold;
-            border-top: 2px solid #eee;
-            border-bottom: 2px solid #eee;
-            padding: 10px 0;
-            text-align: center;
+        /* 首頁專用樣式：黃色警告框 */
+        .warning-box {
+            background-color: #ffffcc;
+            border: 1px solid #e6db55;
+            padding: 15px;
             margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.6;
         }
 
-        /* 通知訊息表格樣式 */
+        .news-item {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .news-date {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .news-title {
+            color: blue;
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* 通知訊息表格 */
         .notice-table {
             width: 100%;
             border-collapse: collapse;
@@ -148,23 +155,14 @@
         .notice-table th {
             background-color: #4a7ebb;
             color: white;
-            text-align: left;
             padding: 8px;
             border: 1px solid #ccc;
+            text-align: left;
         }
 
         .notice-table td {
             padding: 8px;
             border: 1px solid #ccc;
-        }
-
-        .notice-table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        .notice-link {
-            color: #cc0000;
-            text-decoration: underline;
         }
 
         /* 頁腳 */
@@ -184,75 +182,70 @@
     <div class="header">
         <h1>國立臺灣科技大學115學年度碩士班招生</h1>
         <div class="nav-bar">
-            <a href="#" class="nav-item">首頁</a>
-            <a href="#" class="nav-item">報名作業</a>
-            <a href="#" class="nav-item active">考生專區</a>
-            <a href="#" class="nav-item">報到/遞補作業</a>
+            <div id="nav-home" class="nav-item active" onclick="showPage('home-page', 'nav-home')">首頁</div>
+            <div class="nav-item">報名作業</div>
+            <div id="nav-user" class="nav-item" onclick="showPage('print-page', 'nav-user')">考生專區</div>
+            <div class="nav-item">報到/遞補作業</div>
         </div>
     </div>
 
     <div class="container">
         <div class="sidebar">
-            <div class="user-name">考生姓名：卿承宇</div>
             <ul class="sidebar-menu">
-                <li>資料上傳.報名費繳費作業</li>
-                <li onclick="showPage('notice-page')">通知訊息</li>
-                <li>修改基本資料<br><span style="font-size: 10px; color: #666;">(報名截止不得修改)</span></li>
-                <li onclick="showPage('print-page')">列印准考證 / 口試繳費作業</li>
-                <li>複查作業<br><span style="font-size: 10px; color: #666;">(未開放)</span></li>
-                <li>放棄錄取.遞補資格<br><span style="font-size: 10px; color: #666;">(尚未開放)</span></li>
-                <li>修改通訊資料</li>
-                <li>修改密碼</li>
+                <li onclick="showPage('home-page', 'nav-home')">最新消息與公告</li>
+                <li>招生簡章</li>
+                <li>校址圖</li>
+                <li onclick="showPage('notice-page', 'nav-user')">通知訊息</li>
+                <li onclick="showPage('print-page', 'nav-user')">列印准考證 / 口試繳費作業</li>
                 <li>登出</li>
             </ul>
         </div>
 
         <div class="main-content">
             
-            <div id="print-page" class="page-content active">
+            <div id="home-page" class="page-content active">
+                <div class="breadcrumb">首頁 / 最新消息與公告</div>
+                
+                <div class="warning-box">
+                    💡 ※ 招生網站不支援 IE9 (含) 以下瀏覽器<br>
+                    請使用 Google Chrome、Firefox 等瀏覽器，<span style="color: red; font-weight: bold;">請勿使用智慧型手機或平板電腦操作</span>。<br>
+                    <a href="#" style="color: #cc0000;">[下載 Chrome]</a> <a href="#" style="color: #cc0000;">[下載 Firefox]</a>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-date">2026/01/19</div>
+                    <span class="news-title" onclick="showPage('print-page', 'nav-user')">准考證列印</span>
+                    <p style="font-size: 14px;">准考證預定於115年1月19日(一)開放 <span style="color: red; text-decoration: underline;">上網列印</span></p>
+                    <a href="#" style="color: red; font-size: 14px;">※115學年度碩士班招生筆試公告</a>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-date">2025/12/11</div>
+                    <span class="news-title">招生系統的照片上傳功能恢復正常</span>
+                    <p style="font-size: 14px;">各位考生您好：本校招生系統的照片上傳功能，電算中心已修復完成...</p>
+                </div>
+            </div>
+
+            <div id="print-page" class="page-content">
                 <div class="breadcrumb">首頁 / <span>考生專區</span> / 報名作業狀態</div>
-                <div class="title-banner">◀◀◀ 報名狀態查詢及文件下載 ▶▶▶</div>
+                <div style="color: #cc0000; font-size: 18px; font-weight: bold; text-align: center; border-top: 2px solid #eee; border-bottom: 2px solid #eee; padding: 10px 0; margin-bottom: 20px;">
+                    ◀◀◀ 報名狀態查詢及文件下載 ▶▶▶
+                </div>
                 <div style="margin-bottom: 10px;">系所組別：資訊工程系碩士班 <a href="#" style="color:#cc0000;">(報名資料查詢)</a></div>
                 <div style="color: blue; margin-bottom: 10px;">准考證號：515001453</div>
                 <div style="margin-top: 20px;">
                     1. 列印准考證： 
-                    <a href="資訊工程系碩士班准考證.PDF" download="准考證.pdf" style="color:#cc0000; font-weight:bold;">列印准考證</a>
-                    <p style="color: blue; font-size: 14px; margin-top: 5px;">
-                        本校將於115年1月19日(一)起開放考生自行上網至考生專區列印准考證。( 准考證之列印僅表示報名成功 )。
-                    </p>
+                    <a href="補助大專學生研究計畫線上申請作業使用注意事項.pdf" download="准考證.pdf" style="color:#cc0000; font-weight:bold;">列印准考證</a>
                 </div>
             </div>
 
             <div id="notice-page" class="page-content">
                 <div class="breadcrumb">首頁 / <span>考生專區</span> / 通知訊息</div>
-                <div style="background-color: #4a7ebb; color: white; padding: 5px 10px; font-weight: bold;">
-                    系所組別：資訊工程系碩士班
-                </div>
+                <div style="background-color: #4a7ebb; color: white; padding: 5px 10px; font-weight: bold;">系所組別：資訊工程系碩士班</div>
                 <table class="notice-table">
-                    <thead>
-                        <tr>
-                            <th>標題</th>
-                            <th style="width: 200px;">日期</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><a href="#" class="notice-link">准考證號通知單</a></td>
-                            <td>2026/1/19 上午 10:14:04</td>
-                        </tr>
-                        <tr>
-                            <td><a href="#" class="notice-link">上傳狀態確認</a></td>
-                            <td>2025/12/12 下午 05:27:11</td>
-                        </tr>
-                        <tr>
-                            <td><a href="#" class="notice-link">上傳提醒通知</a></td>
-                            <td>2025/12/11 下午 04:14:55</td>
-                        </tr>
-                        <tr>
-                            <td><a href="#" class="notice-link">網路報名確認信</a></td>
-                            <td>2025/12/11 下午 03:51:54</td>
-                        </tr>
-                    </tbody>
+                    <tr><th>標題</th><th>日期</th></tr>
+                    <tr><td>准考證號通知單</td><td>2026/1/19 上午 10:14:04</td></tr>
+                    <tr><td>上傳狀態確認</td><td>2025/12/12 下午 05:27:11</td></tr>
                 </table>
             </div>
 
@@ -261,22 +254,21 @@
 
     <div class="footer">
         電話：02-27376112 | 傳真：02-27301027 | E-mail：mengjin@mail.ntust.edu.tw <br>
-        國立臺灣科技大學 碩士班招生 臺北市 106 大安區基隆路 4 段 43 號 <br>
-        本文件所有權均受法律保護
+        國立臺灣科技大學 碩士班招生 臺北市 106 大安區基隆路 4 段 43 號
     </div>
 
     <script>
-        function showPage(pageId) {
-            // 隱藏所有頁面
+        function showPage(pageId, navId) {
+            // 切換頁面顯示
             var pages = document.getElementsByClassName('page-content');
-            for (var i = 0; i < pages.length; i++) {
-                pages[i].classList.remove('active');
-            }
-            // 顯示指定的頁面
+            for (var i = 0; i < pages.length; i++) { pages[i].classList.remove('active'); }
             document.getElementById(pageId).classList.add('active');
+
+            // 切換頂部導覽列高亮狀態
+            var navs = document.getElementsByClassName('nav-item');
+            for (var j = 0; j < navs.length; j++) { navs[j].classList.remove('active'); }
+            if(navId) document.getElementById(navId).classList.add('active');
         }
     </script>
-
 </body>
 </html>
-
