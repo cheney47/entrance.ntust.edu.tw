@@ -170,6 +170,7 @@
         .notice-link {
             color: #cc0000;
             text-decoration: underline;
+            cursor: pointer;
         }
 
         /* 頁腳 */
@@ -251,27 +252,45 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><a href="#" class="notice-link">准考證號通知單</a></td>
+                            <td><a class="notice-link">准考證號通知單</a></td>
                             <td>2026/1/19 上午 10:14:04</td>
                         </tr>
                         <tr>
-                            <td><a href="#" class="notice-link">上傳狀態確認</a></td>
+                            <td><a class="notice-link">上傳狀態確認</a></td>
                             <td>2025/12/12 下午 05:27:11</td>
                         </tr>
                         <tr>
-                            <td><a href="#" class="notice-link">上傳提醒通知</a></td>
+                            <td><a class="notice-link">上傳提醒通知</a></td>
                             <td>2025/12/11 下午 04:14:55</td>
                         </tr>
                         <tr>
-                            <td><a href="#" class="notice-link">網路報名確認信</a></td>
+                            <td><a class="notice-link">網路報名確認信</a></td>
                             <td>2025/12/11 下午 03:51:54</td>
                         </tr>
                         <tr>
-                            <td><a href="#" class="notice-link">總成績通知單</a></td>
-                            <td>2025/12/11 下午 03:51:54</td>
+                            <td><a class="notice-link" onclick="showPage('score-page')">總成績通知單</a></td>
+                            <td>2026/3/9 下午 04:13:21</td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+
+            <div id="score-page" class="page-content">
+                <div class="breadcrumb"><span>首頁 / 考生專區 / </span>報名作業狀態</div>
+                <div class="title-banner">◀◀◀ 報名狀態查詢及文件下載 ▶▶▶</div>
+                
+                <div style="margin-bottom: 10px; font-size: 15px;">
+                    系所組別：資訊工程系碩士班 <a href="#" style="color:#cc0000;">(報名資料查詢)</a>
+                </div>
+                <div style="color: blue; margin-bottom: 20px; font-size: 15px;">
+                    准考證號：515001453
+                </div>
+
+                <div style="margin-top: 20px; font-size: 15px;">
+                    1. 列印准考證： 
+                    <p style="color: blue; font-size: 14px; margin-top: 5px; line-height: 1.5;">
+                        </p>
+                </div>
             </div>
 
         </div>
@@ -300,4 +319,3 @@
 
 </body>
 </html>
-
