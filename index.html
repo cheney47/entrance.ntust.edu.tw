@@ -26,6 +26,7 @@
             margin: 0;
             font-size: 28px;
             letter-spacing: 2px;
+            font-weight: normal;
         }
 
         .nav-bar {
@@ -37,13 +38,14 @@
         }
 
         .nav-item {
-            padding: 8px 15px;
+            padding: 6px 15px;
             margin: 0 5px;
             color: white;
             text-decoration: none;
             font-size: 14px;
-            border-radius: 4px;
+            border-radius: 2px;
             background-color: #666;
+            cursor: pointer;
             display: flex;
             align-items: center;
         }
@@ -58,7 +60,7 @@
             width: 1000px;
             margin: 20px auto;
             background-color: white;
-            min-height: 500px;
+            min-height: 600px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
@@ -71,9 +73,8 @@
             background-color: #fff;
         }
 
-        .user-name {
+        .user-name-box {
             font-size: 14px;
-            font-weight: bold;
             border-bottom: 2px solid #999;
             padding-bottom: 5px;
             margin-bottom: 10px;
@@ -92,14 +93,18 @@
             color: #cc0000;
             cursor: pointer;
             line-height: 1.4;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .sidebar-menu li::before {
+            content: "▪";
+            margin-right: 5px;
+            font-size: 16px;
         }
 
         .sidebar-menu li:hover {
             background-color: #f9f9f9;
-        }
-
-        .sidebar-menu li::before {
-            content: "▪ ";
         }
 
         /* 右側主顯示區 */
@@ -108,23 +113,22 @@
             padding: 20px 35px;
         }
 
-        /* 內容區塊隱藏設定 */
         .page-content {
-            display: none; /* 預設先全部隱藏 */
+            display: none;
         }
 
         .page-content.active {
-            display: block; /* 只有 active 的會顯示 */
+            display: block;
         }
 
         .breadcrumb {
-            font-size: 12px;
-            color: #666;
+            font-size: 13px;
+            color: #cc0000;
             margin-bottom: 15px;
         }
 
         .breadcrumb span {
-            color: #cc0000;
+            color: #666;
         }
 
         .title-banner {
@@ -143,6 +147,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 14px;
+            margin-top: 10px;
         }
 
         .notice-table th {
@@ -159,7 +164,7 @@
         }
 
         .notice-table tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #f9f9f9;
         }
 
         .notice-link {
@@ -176,6 +181,7 @@
             padding: 15px 0;
             border-top: 3px solid #cc0000;
             min-width: 1000px;
+            line-height: 1.8;
         }
     </style>
 </head>
@@ -184,24 +190,23 @@
     <div class="header">
         <h1>國立臺灣科技大學115學年度碩士班招生</h1>
         <div class="nav-bar">
-            <a href="#" class="nav-item">首頁</a>
-            <a href="#" class="nav-item">報名作業</a>
-            <a href="#" class="nav-item active">考生專區</a>
-            <a href="#" class="nav-item">報到/遞補作業</a>
+            <div class="nav-item">● 首頁</div>
+            <div class="nav-item">● 報名作業</div>
+            <div class="nav-item active">● 考生專區</div>
+            <div class="nav-item">● 報到/遞補作業</div>
         </div>
     </div>
 
     <div class="container">
         <div class="sidebar">
-            <div class="user-name">考生姓名：卿承宇</div>
+            <div class="user-name-box">考生姓名：卿承宇</div>
             <ul class="sidebar-menu">
                 <li>資料上傳.報名費繳費作業</li>
                 <li onclick="showPage('notice-page')">通知訊息</li>
-                <li>修改基本資料<br><span style="font-size: 10px; color: #666;">(報名截止不得修改)</span></li>
-                <li onclick="showPage('print-page')">列印准考證 / 口試繳費作業</li>
-                <li>觀看訊息<br><span style="font-size: 10px; color: #666;"></span></li>
-                <li>複查作業<br><span style="font-size: 10px; color: #666;"></span></li>
-                <li>放棄錄取.遞補資格<br><span style="font-size: 10px; color: #666;"></span></li>
+                <li><div>修改基本資料<br><span style="font-size: 10px; color: #666;">(報名截止不得修改)</span></div></li>
+                <li onclick="showPage('print-page')">列印准考證<br>口試繳費作業</li>
+                <li><div>複查作業<br><span style="font-size: 10px; color: #666;">(未開放)</span></div></li>
+                <li><div>放棄錄取.遞補資格<br><span style="font-size: 10px; color: #666;">(尚未開放)</span></div></li>
                 <li>修改通訊資料</li>
                 <li>修改密碼</li>
                 <li>登出</li>
@@ -211,29 +216,37 @@
         <div class="main-content">
             
             <div id="print-page" class="page-content active">
-                <div class="breadcrumb">首頁 / <span>考生專區</span> / 報名作業狀態</div>
+                <div class="breadcrumb"><span>首頁 / 考生專區 / </span>報名作業狀態</div>
                 <div class="title-banner">◀◀◀ 報名狀態查詢及文件下載 ▶▶▶</div>
-                <div style="margin-bottom: 10px;">系所組別：資訊工程系碩士班 <a href="#" style="color:#cc0000;">(報名資料查詢)</a></div>
-                <div style="color: blue; margin-bottom: 10px;">准考證號：515001453</div>
-                <div style="margin-top: 20px;">
+                
+                <div style="margin-bottom: 10px; font-size: 15px;">
+                    系所組別：資訊工程系碩士班 <a href="#" style="color:#cc0000;">(報名資料查詢)</a>
+                </div>
+                <div style="color: blue; margin-bottom: 20px; font-size: 15px;">
+                    准考證號：515001453
+                </div>
+
+                <div style="margin-top: 20px; font-size: 15px;">
                     1. 列印准考證： 
-                    <a href="資訊工程系碩士班准考證.PDF" download="准考證.pdf" style="color:#cc0000; font-weight:bold;">列印准考證</a>
-                    <p style="color: blue; font-size: 14px; margin-top: 5px;">
+                    <a href="#" style="color:#cc0000; font-weight:bold; text-decoration: underline;">列印准考證</a>
+                    <p style="color: blue; font-size: 14px; margin-top: 5px; line-height: 1.5;">
                         本校將於115年1月19日(一)起開放考生自行上網至考生專區列印准考證。( 准考證之列印僅表示報名成功 )。
                     </p>
                 </div>
             </div>
 
             <div id="notice-page" class="page-content">
-                <div class="breadcrumb">首頁 / <span>考生專區</span> / 通知訊息</div>
-                <div style="background-color: #4a7ebb; color: white; padding: 5px 10px; font-weight: bold;">
+                <div class="breadcrumb"><span>首頁 / 考生專區 / </span>通知訊息</div>
+                
+                <div style="background-color: #4a7ebb; color: white; padding: 6px 12px; font-weight: bold; font-size: 14px;">
                     系所組別：資訊工程系碩士班
                 </div>
+                
                 <table class="notice-table">
                     <thead>
                         <tr>
-                            <th>標題</th>
-                            <th style="width: 200px;">日期</th>
+                            <th style="width: 70%;">標題</th>
+                            <th>日期</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -268,18 +281,18 @@
 
     <script>
         function showPage(pageId) {
-            // 隱藏所有頁面
+            // 隱藏目前所有頁面內容
             var pages = document.getElementsByClassName('page-content');
             for (var i = 0; i < pages.length; i++) {
                 pages[i].classList.remove('active');
             }
-            // 顯示指定的頁面
+            // 顯示被點擊的目標頁面
             document.getElementById(pageId).classList.add('active');
+            
+            // 滾動到頂部
+            window.scrollTo(0, 0);
         }
     </script>
 
 </body>
 </html>
-
-
-
